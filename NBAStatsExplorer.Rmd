@@ -1,0 +1,90 @@
+## About  
+
+The *NBA Player Stats Explorer* aims to allow users to visually explore statistics related to the play during the 2015/2016 season of the National Basketball Association (or *NBA*). 
+
+NBA statistics are available in a number of places, but custom plotting of one statistic against another is nowhere to be found (to my admittedly limited knowledge). It will allow all NBA fans to get new insight on the abilities of their favorite players, and compare players against one another on various "profiles". For a *basic* example, you could ask "Who are the best inside-out players in the league?", and get a reasonable answer by plotting Rebounds against 3 point shots made.
+
+_________________________________________________________________________________
+
+
+## Using the Explorer
+
+You can choose which statistic to use on X and Y axes, and apply several filters on the data you want to show. On the right panel, the corresponding plot will show instantly. Mouse-over information is available to know which point represent which player. Means for both chosen X and Y variables are calculated on the fly on the current sample of players and shown right below the plot.
+
+Here are the statistics available for plotting :
+
+* Points per game
+* Rebounds per game
+* Offensive rebounds per game
+* Defensive rebounds per game
+* Assists per game
+* Steals per game
+* Blocks per game
+* Effective field goal pct
+* Field goals made per game
+* Field goals attempts per game
+* Field goal pct
+* 3 points shots made per game
+* 3 points shots attempts per game
+* 3 points shot pct
+* 2 points shots made per game
+* 2 points shots attempts per game
+* 2 points shot pct
+* Free throws made per game
+* Free throws attempts per game
+* Free throw pct
+* Turnovers per game
+* Fouls per game  
+
+Filtering is done via the use of three sliders and one drop-down menu. The sliders let you define a range for the following variables :
+
+* Games played
+* Minutes per game (average)
+* Age  
+
+The drop-down menu offers the possibility to only show players of a specific team. The "TOT" value represents all players who have been traded since the start of the season, and offers statistics on whe whole season, combining games played with their former and their new teams.
+
+_________________________________________________________________________________
+
+
+## Free Agents
+
+Free agents are players whose contract expire at the end of the current season. This information was added to the Explorer, as it allows users to have a quick idea of the soon-to-be available talent pool for their favorite team, and to compare these free agents against one another to find the best possible fit for their team needs.
+
+_________________________________________________________________________________
+
+
+## The Data
+
+All the statistics have been exported from [Basketball Reference](http://www.basketball-reference.com). Coverage starts on the first night of the season, and concludes with the games played on 2016, February 23rd. At the time of the implementation of this data product, there's about a third of the season left to play (excluding the playoffs).
+
+The list of Free Agents for the summer of 2016 has been exported from [ESPN](http://espn.go.com/nba).
+
+A consolidated CSV file has been created using both sources, and various modifications have been performed to allow for easier use.
+
+_________________________________________________________________________________
+
+
+## Possible Improvements
+
+* Automate the CSV creation, as to be able to always have up-to-date statistics, and also to be able to filter by dates.
+* Load other categories of statistics, including *Advanced Metrics*. 
+* Allow filtering with more variables. 
+* Allow choice of color-coded legend (currently only with free agency status).
+* Allow for statistics from previous seasons to be loaded. 
+
+_________________________________________________________________________________
+
+
+## Visual Design
+
+The visual design of this product has been inspired by the *Movie Explorer* project exposed in the *Shiny Gallery*. The interactive plots are implemented using the *ggvis* R package.
+
+_________________________________________________________________________________
+
+
+## Contact
+
+* Email : julien.cohensolal@gmail.com
+* Twitter : @_jcohensolal_
+
