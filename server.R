@@ -8,21 +8,24 @@ library(ggvis)
 # Retrieve data
 nbaData <- read.csv(file = "data/nbastats_20160224.csv")
 
+# Function for generating mouse-over text
+playerMouseOver <- function(x) 
+{
+    if (is.null(x))     {return(NULL)}
+    if (is.null(x$Rk))  {return(NULL)}
+    
+    # Pick out the player with this Rk
+    player <- nbaData[nbaData$Rk == x$Rk, ]
+    paste0("<b>", player$Player, "</b><br>",
+           paste("Team :", player$Tm, "<br>"),
+           paste("Games :", player$G, "<br>"),
+           paste("Mins/g :", player$MP, "<br>"),
+           paste("Age :", player$Age))
+}
+
 shinyServer(
     function(input, output) 
     {
-        # Function for generating mouse-over text
-        playerMouseOver <- function(x) 
-        {
-            if (is.null(x))     {return(NULL)}
-            if (is.null(x$Rk))  {return(NULL)}
-            
-            # Pick out the player with this Rk
-            player <- nbaData[nbaData$Rk == x$Rk, ]
-            paste0("<b>", player$Player, "</b><br>",
-                   paste("Team :", player$Tm, "<br>"),
-                   paste("Games played :", player$G))
-        }
 
         # Reactive function to filter the players using the user's inputs
         players <- reactive(
@@ -130,7 +133,7 @@ shinyServer(
         })
         
         visu %>% bind_shiny("plot1")
-        
+
         output$n_players <- renderText({ nrow(players()) })
         output$means <- renderUI(
         { 

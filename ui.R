@@ -37,7 +37,7 @@ shinyUI(fluidPage(
                             free agency data by espn.com")),
                             wellPanel(strong("Number of players selected :"), 
                                       textOutput("n_players"), 
-                                      strong("Calculated means of current sample :"),
+                                      strong("Calculated means for current sample :"),
                                       htmlOutput("means"))), 
                         # show support document 
                         tabPanel("User Guide", includeHTML("NBAStatsExplorer.html")))))))
