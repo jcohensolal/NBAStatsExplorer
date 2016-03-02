@@ -77,7 +77,6 @@ ________________________________________________________________________________
 * Allow choice of color-coded legend (currently only with free agency status).
 * Allow for statistics from previous seasons to be loaded. 
 * Add positions to the data set for more filtering possibilities.
-* Add a checkbox to only show free agents.
 
 _________________________________________________________________________________
 
