@@ -6,7 +6,8 @@ library(dplyr)
 library(ggvis)
 
 # Retrieve data
-nbaData <- read.csv(file = "data/nbastats_20160224.csv")
+createCSV()
+nbaData <- read.csv(file = "data/nbastats.csv")
 
 # Function for generating mouse-over text
 playerMouseOver <- function(x) 
@@ -40,8 +41,8 @@ shinyServer(
             # Apply filters
             filteredData <- nbaData[nbaData$G > (minGp - 1), ]
             filteredData <- filteredData[filteredData$G < (maxGp + 1), ]
-            filteredData <- filteredData[filteredData$MP > (minMpg - 1), ]
-            filteredData <- filteredData[filteredData$MP < (maxMpg + 1), ]
+            filteredData <- filteredData[filteredData$MP > (minMpg - 0.1), ]
+            filteredData <- filteredData[filteredData$MP < (maxMpg + 0.1), ]
             filteredData <- filteredData[filteredData$Age > (minAge - 1), ]
             filteredData <- filteredData[filteredData$Age < (maxAge + 1), ]
             

@@ -23,18 +23,18 @@ shinyUI(fluidPage(
                                       "DAL", "DEN", "DET", "GSW", "HOU", "IND", "LAC", 
                                       "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", 
                                       "OKC", "ORL", "PHI", "PHO", "POR", "SAC", "SAS", 
-                                      "TOR", "TOT", "UTA", "WAS")))),
+                                      "TOR", "TOT", "UTA", "WAS"))),
                        # textInput("Name", "Player name contains (e.g., Williams)"))),
+                    tags$small("All stats provided by "), 
+                    br("http://www.basketball-reference.com"), 
+                    tags$small("Free agency data provided by "), 
+                    br("http://basketball.realgm.com/")),
              column(8,
                     tabsetPanel(
                         # show a plot  
                         tabPanel("Explorer", ggvisOutput("plot1"),
-                                 tags$small(paste0(
-                            "Note : contains stats for 2015/2016 season up to games 
-                            played on 2016, February 23rd.")), 
-                            tags$small(paste0(
-                            "Stats provided by http://www.basketball-reference.com, 
-                            free agency data by espn.com")),
+                                 tags$small(paste0("First loading might take a few seconds, please 
+                                        change a variable or a filter to show the plot")), 
                             wellPanel(strong("Number of players selected :"), 
                                       textOutput("n_players"), 
                                       strong("Calculated means for current sample :"),

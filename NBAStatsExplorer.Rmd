@@ -11,32 +11,7 @@ ________________________________________________________________________________
 
 You can choose which statistic to use on X and Y axes, and apply several filters on the data you want to show. On the right panel, the corresponding plot will show instantly. Mouse-over information is available to know which point represent which player. Means for both chosen X and Y variables are calculated on the fly on the current sample of players and shown right below the plot.
 
-Here are the statistics available for plotting :
-
-* Points per game
-* Rebounds per game
-* Offensive rebounds per game
-* Defensive rebounds per game
-* Assists per game
-* Steals per game
-* Blocks per game
-* Effective field goal pct
-* Field goals made per game
-* Field goals attempts per game
-* Field goal pct
-* 3 points shots made per game
-* 3 points shots attempts per game
-* 3 points shot pct
-* 2 points shots made per game
-* 2 points shots attempts per game
-* 2 points shot pct
-* Free throws made per game
-* Free throws attempts per game
-* Free throw pct
-* Turnovers per game
-* Fouls per game  
-
-Filtering is done via the use of three sliders and one drop-down menu. The sliders let you define a range for the following variables :
+Filtering is done via the use of three sliders and one drop-down menu. The sliders let you define a range for the following filters :
 
 * Games played
 * Minutes per game (average)
@@ -56,23 +31,51 @@ ________________________________________________________________________________
 
 ## The Data
 
-All the statistics have been exported from [Basketball Reference](http://www.basketball-reference.com). Coverage starts on the first night of the season, and concludes with the games played on 2016, February 23rd. At the time of the implementation of this data product, there's about a third of the season left to play (excluding the playoffs).
+All the statistics have been exported from [Basketball Reference](http://www.basketball-reference.com). Coverage starts on the first night of the season, and should cover about the whole season played so far (games played the previous night might need a few hours to be included though).
 
-The list of Free Agents for the summer of 2016 has been exported from [ESPN](http://espn.go.com/nba).
+The list of Free Agents for the summer of 2016 has been exported from [RealGM](http://basketball.realgm.com/nba/future_free_agents/2017/All/Per_Game/0/NBA/player).
 
 A consolidated CSV file has been created using both sources, and various modifications have been performed to allow for easier use.
 
 _________________________________________________________________________________
 
 
+## Advanced Statistics Definitions
+
+Here are the definitions of the more obscure, "advanced"" stats, from [Basketball Reference](http://www.basketball-reference.com) :
+
+* *Player Efficiency Rating* : a measure of per-minute production standardized such that the league average is 15
+* *True Shooting Percentage* : a measure of shooting efficiency that takes into account 2 point field goals, 3 point field goals, and free throws
+* *3 Point Attempt Rate* : percentage of FG Attempts from 3-Point Range
+* *Free Throw Attempt Rate* : number of FT Attempts Per FG Attempt
+* *Offensive Rebound Percentage* : an estimate of the percentage of available offensive rebounds a player grabbed while he was on the floor
+* *Defensive Rebound Percentage* : an estimate of the percentage of available defensive rebounds a player grabbed while he was on the floor
+* *Total Rebound Percentage* : an estimate of the percentage of available rebounds a player grabbed while he was on the floor
+* *Assist Percentage* : an estimate of the percentage of teammate field goals a player assisted while he was on the floor
+* *Steal Percentage* : an estimate of the percentage of opponent possessions that end with a steal by the player while he was on the floor
+* *Block Percentage* : an estimate of the percentage of opponent two-point field goal attempts blocked by the player while he was on the floor
+* *Turnover Percentage* : an estimate of turnovers committed per 100 plays
+* *Usage Percentage* : an estimate of the percentage of team plays used by a player while he was on the floor
+* *Offensive Win Shares* : an estimate of the number of wins contributed by a player due to his offense
+* *Defensive Win Shares* : an estimate of the number of wins contributed by a player due to his defense
+* *Win Shares* : an estimate of the number of wins contributed by a player
+* *Win Shares Per 48 Minutes* : an estimate of the number of wins contributed by a player per 48 minutes (league average is approximately .100)
+* *Offensive Box Plus/Minus* : a box score estimate of the offensive points per 100 possessions a player contributed above a league-average player, translated to an average team
+* *Defensive Box Plus/Minus* : a box score estimate of the defensive points per 100 possessions a player contributed above a league-average player, translated to an average team
+* *Box Plus/Minus* : a box score estimate of the points per 100 possessions a player contributed above a league-average player, translated to an average team
+* *Value over Replacement Player* : a box score estimate of the points per 100 TEAM possessions that a player contributed above a replacement-level (-2.0) player, translated to an average team and prorated to an 82-game season. Multiply by 2.70 to convert to wins over replacement
+
+_________________________________________________________________________________
+
+
 ## Possible Improvements
 
-* Automate the CSV creation, as to be able to always have up-to-date statistics, and also to be able to filter by dates.
-* Load other categories of statistics, including *Advanced Metrics*. 
-* Allow filtering with more variables. 
+* Add filtering by dates.
+* Allow filtering by all statistics
 * Allow choice of color-coded legend (currently only with free agency status).
 * Allow for statistics from previous seasons to be loaded. 
 * Add positions to the data set for more filtering possibilities.
+* Add a checkbox to only show free agents.
 
 _________________________________________________________________________________
 
@@ -80,6 +83,15 @@ ________________________________________________________________________________
 ## Visual Design
 
 The visual design of this product has been inspired by the *Movie Explorer* project exposed in the *Shiny Gallery*. The interactive plots are implemented using the *ggvis* R package.
+
+_________________________________________________________________________________
+
+
+## Source Code
+
+The source code for the whole project is freely available on GitHub : 
+
+[NBA Stats Explorer](https://github.com/juliencohensolal/NBAStatsExplorer)
 
 _________________________________________________________________________________
 
