@@ -19,6 +19,8 @@ Filtering is done via the use of three sliders and one drop-down menu. The slide
 
 The drop-down menu offers the possibility to only show players of a specific team. The "TOT" value represents all players who have been traded since the start of the season, and offers statistics on whe whole season, combining games played with their former and their new teams.
 
+The checkbox allows to only plot the 2016 Free Agents.
+
 _________________________________________________________________________________
 
 

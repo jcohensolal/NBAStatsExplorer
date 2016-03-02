@@ -45,7 +45,7 @@ shinyServer(
             filteredData <- filteredData[filteredData$MP < (maxMpg + 0.1), ]
             filteredData <- filteredData[filteredData$Age > (minAge - 1), ]
             filteredData <- filteredData[filteredData$Age < (maxAge + 1), ]
-            
+
             # Optional : filter by team
             if (input$Team != "All") 
             {
@@ -58,6 +58,12 @@ shinyServer(
             #    print(input$Name)
             #    filteredData <- filter(filteredData, grepl(input$Name, Player))
             #}
+            
+            # Optional : filter by FA
+            if (input$fa) 
+            {
+                filteredData <- filteredData[filteredData$FA == 1, ]
+            }
             
             # Add column which says whether the player will be a free agent in 
             # July of 2016
