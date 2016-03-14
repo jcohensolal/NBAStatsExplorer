@@ -4,6 +4,10 @@ The *NBA Player Stats Explorer* aims to allow users to visually explore statisti
 
 NBA statistics are available in a number of places, but custom plotting of one statistic against another is nowhere to be found (to my admittedly limited knowledge). It will allow all NBA fans to get new insight on the abilities of their favorite players, and compare players against one another on various "profiles". For a *basic* example, you could ask "Who are the best inside-out players in the league?", and get a reasonable answer by plotting Rebounds against 3 point shots made.
 
+The application is available at this address :  
+
+[NBA Player Stats Explorer](https://jcohensolal.shinyapps.io/NBAStatsExplorer/)
+
 _________________________________________________________________________________
 
 
@@ -11,11 +15,13 @@ ________________________________________________________________________________
 
 You can choose which statistic to use on X and Y axes, and apply several filters on the data you want to show. On the right panel, the corresponding plot will show instantly. Mouse-over information is available to know which point represent which player. Means for both chosen X and Y variables are calculated on the fly on the current sample of players and shown right below the plot.
 
-Filtering is done via the use of three sliders and one drop-down menu. The sliders let you define a range for the following filters :
+Filtering is done via the use of three sliders, one checkbox group, and one drop-down menu. The sliders let you define a range for the following filters :
 
 * Games played
 * Minutes per game (average)
 * Age  
+
+The checkbox group lets you filter by position on the basketball floor. Inclusion is stronger than exclusion here, which means if a player is both PG and SG eligible, and you choose to just exclude SG players, then that player will still be shown on the plot as he qualifies for the PG position as well. Please note : positions for a given player may vary depending on your source of information, as it is not an official statistic provided by the league.
 
 The drop-down menu offers the possibility to only show players of a specific team. The "TOT" value represents all players who have been traded since the start of the season, and offers statistics on whe whole season, combining games played with their former and their new teams.
 
@@ -37,6 +43,8 @@ All the statistics have been exported from [Basketball Reference](http://www.bas
 
 The list of Free Agents for the summer of 2016 has been exported from [RealGM](http://basketball.realgm.com/nba/future_free_agents/2017/All/Per_Game/0/NBA/player).
 
+Positions for players have been exported from [Yahoo Sports](http://sports.yahoo.com/nba/stats/byposition).
+
 A consolidated CSV file has been created using both sources, and various modifications have been performed to allow for easier use.
 
 _________________________________________________________________________________
@@ -46,7 +54,6 @@ ________________________________________________________________________________
 
 Here are the definitions of the more obscure, "advanced"" stats, from [Basketball Reference](http://www.basketball-reference.com) :
 
-* *Player Efficiency Rating* : a measure of per-minute production standardized such that the league average is 15
 * *True Shooting Percentage* : a measure of shooting efficiency that takes into account 2 point field goals, 3 point field goals, and free throws
 * *3 Point Attempt Rate* : percentage of FG Attempts from 3-Point Range
 * *Free Throw Attempt Rate* : number of FT Attempts Per FG Attempt
@@ -58,6 +65,7 @@ Here are the definitions of the more obscure, "advanced"" stats, from [Basketbal
 * *Block Percentage* : an estimate of the percentage of opponent two-point field goal attempts blocked by the player while he was on the floor
 * *Turnover Percentage* : an estimate of turnovers committed per 100 plays
 * *Usage Percentage* : an estimate of the percentage of team plays used by a player while he was on the floor
+* *Player Efficiency Rating* : a measure of per-minute production standardized such that the league average is 15
 * *Offensive Win Shares* : an estimate of the number of wins contributed by a player due to his offense
 * *Defensive Win Shares* : an estimate of the number of wins contributed by a player due to his defense
 * *Win Shares* : an estimate of the number of wins contributed by a player
@@ -73,10 +81,8 @@ ________________________________________________________________________________
 ## Possible Improvements
 
 * Add filtering by dates.
-* Allow filtering by all statistics
-* Allow choice of color-coded legend (currently only with free agency status).
 * Allow for statistics from previous seasons to be loaded. 
-* Add positions to the data set for more filtering possibilities.
+* Speed up the loading phase.
 
 _________________________________________________________________________________
 

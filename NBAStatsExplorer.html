@@ -65,17 +65,20 @@ img {
 <h2>About</h2>
 <p>The <em>NBA Player Stats Explorer</em> aims to allow users to visually explore statistics related to the play during the 2015/2016 season of the National Basketball Association (or <em>NBA</em>).</p>
 <p>NBA statistics are available in a number of places, but custom plotting of one statistic against another is nowhere to be found (to my admittedly limited knowledge). It will allow all NBA fans to get new insight on the abilities of their favorite players, and compare players against one another on various “profiles”. For a <em>basic</em> example, you could ask “Who are the best inside-out players in the league?”, and get a reasonable answer by plotting Rebounds against 3 point shots made.</p>
+<p>The application is available at this address :</p>
+<p><a href="https://jcohensolal.shinyapps.io/NBAStatsExplorer/">NBA Player Stats Explorer</a></p>
 <hr />
 </div>
 <div id="using-the-explorer" class="section level2">
 <h2>Using the Explorer</h2>
 <p>You can choose which statistic to use on X and Y axes, and apply several filters on the data you want to show. On the right panel, the corresponding plot will show instantly. Mouse-over information is available to know which point represent which player. Means for both chosen X and Y variables are calculated on the fly on the current sample of players and shown right below the plot.</p>
-<p>Filtering is done via the use of three sliders and one drop-down menu. The sliders let you define a range for the following filters :</p>
+<p>Filtering is done via the use of three sliders, one checkbox group, and one drop-down menu. The sliders let you define a range for the following filters :</p>
 <ul>
 <li>Games played</li>
 <li>Minutes per game (average)</li>
 <li>Age</li>
 </ul>
+<p>The checkbox group lets you filter by position on the basketball floor. Inclusion is stronger than exclusion here, which means if a player is both PG and SG eligible, and you choose to just exclude SG players, then that player will still be shown on the plot as he qualifies for the PG position as well. Please note : positions for a given player may vary depending on your source of information, as it is not an official statistic provided by the league.</p>
 <p>The drop-down menu offers the possibility to only show players of a specific team. The “TOT” value represents all players who have been traded since the start of the season, and offers statistics on whe whole season, combining games played with their former and their new teams.</p>
 <p>The checkbox allows to only plot the 2016 Free Agents.</p>
 <hr />
@@ -89,6 +92,7 @@ img {
 <h2>The Data</h2>
 <p>All the statistics have been exported from <a href="http://www.basketball-reference.com">Basketball Reference</a>. Coverage starts on the first night of the season, and should cover about the whole season played so far (games played the previous night might need a few hours to be included though).</p>
 <p>The list of Free Agents for the summer of 2016 has been exported from <a href="http://basketball.realgm.com/nba/future_free_agents/2017/All/Per_Game/0/NBA/player">RealGM</a>.</p>
+<p>Positions for players have been exported from <a href="http://sports.yahoo.com/nba/stats/byposition">Yahoo Sports</a>.</p>
 <p>A consolidated CSV file has been created using both sources, and various modifications have been performed to allow for easier use.</p>
 <hr />
 </div>
@@ -96,7 +100,6 @@ img {
 <h2>Advanced Statistics Definitions</h2>
 <p>Here are the definitions of the more obscure, “advanced”&quot; stats, from <a href="http://www.basketball-reference.com">Basketball Reference</a> :</p>
 <ul>
-<li><em>Player Efficiency Rating</em> : a measure of per-minute production standardized such that the league average is 15</li>
 <li><em>True Shooting Percentage</em> : a measure of shooting efficiency that takes into account 2 point field goals, 3 point field goals, and free throws</li>
 <li><em>3 Point Attempt Rate</em> : percentage of FG Attempts from 3-Point Range</li>
 <li><em>Free Throw Attempt Rate</em> : number of FT Attempts Per FG Attempt</li>
@@ -108,6 +111,7 @@ img {
 <li><em>Block Percentage</em> : an estimate of the percentage of opponent two-point field goal attempts blocked by the player while he was on the floor</li>
 <li><em>Turnover Percentage</em> : an estimate of turnovers committed per 100 plays</li>
 <li><em>Usage Percentage</em> : an estimate of the percentage of team plays used by a player while he was on the floor</li>
+<li><em>Player Efficiency Rating</em> : a measure of per-minute production standardized such that the league average is 15</li>
 <li><em>Offensive Win Shares</em> : an estimate of the number of wins contributed by a player due to his offense</li>
 <li><em>Defensive Win Shares</em> : an estimate of the number of wins contributed by a player due to his defense</li>
 <li><em>Win Shares</em> : an estimate of the number of wins contributed by a player</li>
@@ -123,10 +127,8 @@ img {
 <h2>Possible Improvements</h2>
 <ul>
 <li>Add filtering by dates.</li>
-<li>Allow filtering by all statistics</li>
-<li>Allow choice of color-coded legend (currently only with free agency status).</li>
 <li>Allow for statistics from previous seasons to be loaded.</li>
-<li>Add positions to the data set for more filtering possibilities.</li>
+<li>Speed up the loading phase.</li>
 </ul>
 <hr />
 </div>

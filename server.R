@@ -21,13 +21,12 @@ playerMouseOver <- function(x)
            paste("Team :", player$Tm, "<br>"),
            paste("Games :", player$G, "<br>"),
            paste("Mins/g :", player$MP, "<br>"),
-           paste("Age :", player$Age))
+           paste("Age :", player$Age, "<br>"))
 }
 
 shinyServer(
     function(input, output) 
     {
-
         # Reactive function to filter the players using the user's inputs
         players <- reactive(
         {
@@ -65,6 +64,13 @@ shinyServer(
                 filteredData <- filteredData[filteredData$FA == 1, ]
             }
             
+            # Optional : filter by Position
+            pos <- input$position
+            if (!is.null(pos))
+            {
+                filteredData <- filteredData[as.logical(rowSums(filteredData[pos] == 1)), ]
+            }
+
             # Add column which says whether the player will be a free agent in 
             # July of 2016
             filteredData$isFA <- character(nrow(filteredData))

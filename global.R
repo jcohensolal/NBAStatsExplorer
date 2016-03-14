@@ -26,7 +26,7 @@ axis_vars <- c(
     "Free throws attempts per game" = "FTA",
     "Free throw pct" = "FTP",
     "Turnovers per game" = "TOV",
-    "Player efficiency rating" = "PER",
+    "Fouls per game" = "FOU",
     "True shooting pct" = "TSP",
     "3 points attempt rate" = "TPAr",
     "Free throw rate" = "FTr",
@@ -38,6 +38,7 @@ axis_vars <- c(
     "Block pct" = "BLKP",
     "Turnover pct" = "TOVP",
     "Usage pct" = "USGP",
+    "Player efficiency rating" = "PER",
     "Offensive win shares" = "OWS",
     "Defensive win shares" = "DWS",
     "Win shares" = "WS",
@@ -51,15 +52,8 @@ axis_vars <- c(
 # single CSV file
 createCSV <- function()
 {
-    # Get Free Agency data from HTML source code
-    htmlDoc <- GET("http://basketball.realgm.com/nba/future_free_agents/2017/All/Per_Game/0/NBA/player")
-    stop_for_status(htmlDoc)
-    docContent <- content(htmlDoc, as = "text")
-    parsedDoc = htmlParse(docContent)
-    faTable <- xpathSApply(parsedDoc, "/descendant::tbody", xmlValue)
-    faVector <- unlist(strsplit(faTable, "\n"))
-    
     # Retrieve basic stats from HTML source code
+    message("Stats parsing")
     htmlDoc <- GET("http://www.basketball-reference.com/leagues/NBA_2016_per_game.html")
     stop_for_status(htmlDoc)
     docContent <- content(htmlDoc, as = "text")
@@ -68,12 +62,81 @@ createCSV <- function()
     playerVector <- unlist(strsplit(playerTable, "\n   "))
     
     # Retrieve advanced stats from HTML source code
+    message("Advanced stats parsing")
     htmlDoc <- GET("http://www.basketball-reference.com/leagues/NBA_2016_advanced.html")
     stop_for_status(htmlDoc)
     docContent <- content(htmlDoc, as = "text")
     parsedDoc = htmlParse(docContent)
     advancedTable <- xpathSApply(parsedDoc, "/descendant::tbody", xmlValue)
     advancedVector <- unlist(strsplit(advancedTable, "\n   "))
+    
+    # Get Free Agency data from HTML source code
+    message("FA data parsing")
+    htmlDoc <- GET("http://basketball.realgm.com/nba/future_free_agents/2017/All/Per_Game/0/NBA/player")
+    stop_for_status(htmlDoc)
+    docContent <- content(htmlDoc, as = "text")
+    parsedDoc = htmlParse(docContent)
+    faTable <- xpathSApply(parsedDoc, "/descendant::tbody", xmlValue)
+    faVector <- unlist(strsplit(faTable, "\n"))
+    
+    # Get Position data from HTML source code
+    message("Positions parsing")
+    htmlDoc <- GET("http://sports.yahoo.com/nba/stats/byposition?pos=PG&conference=NBA&year=season_2015&qualified=0")
+    stop_for_status(htmlDoc)
+    docContent <- content(htmlDoc, as = "text")
+    parsedDoc = htmlParse(docContent)
+    posTable <- xpathSApply(parsedDoc, "//div[@id='yog-bd']/div/div[2]/div/div/table[4]/tr/td/a", xmlValue)
+    pgVector <- unlist(strsplit(as.character(posTable), "\n"))
+    htmlDoc <- GET("http://sports.yahoo.com/nba/stats/byposition?pos=SG&conference=NBA&year=season_2015&qualified=0")
+    stop_for_status(htmlDoc)
+    docContent <- content(htmlDoc, as = "text")
+    parsedDoc = htmlParse(docContent)
+    posTable <- xpathSApply(parsedDoc, "//div[@id='yog-bd']/div/div[2]/div/div/table[4]/tr/td/a", xmlValue)
+    sgVector <- unlist(strsplit(as.character(posTable), "\n"))
+    htmlDoc <- GET("http://sports.yahoo.com/nba/stats/byposition?pos=SF&conference=NBA&year=season_2015&qualified=0")
+    stop_for_status(htmlDoc)
+    docContent <- content(htmlDoc, as = "text")
+    parsedDoc = htmlParse(docContent)
+    posTable <- xpathSApply(parsedDoc, "//div[@id='yog-bd']/div/div[2]/div/div/table[4]/tr/td/a", xmlValue)
+    sfVector <- unlist(strsplit(as.character(posTable), "\n"))
+    htmlDoc <- GET("http://sports.yahoo.com/nba/stats/byposition?pos=PF&conference=NBA&year=season_2015&qualified=0")
+    stop_for_status(htmlDoc)
+    docContent <- content(htmlDoc, as = "text")
+    parsedDoc = htmlParse(docContent)
+    posTable <- xpathSApply(parsedDoc, "//div[@id='yog-bd']/div/div[2]/div/div/table[4]/tr/td/a", xmlValue)
+    pfVector <- unlist(strsplit(as.character(posTable), "\n"))
+    htmlDoc <- GET("http://sports.yahoo.com/nba/stats/byposition?pos=C&conference=NBA&year=season_2015&qualified=0")
+    stop_for_status(htmlDoc)
+    docContent <- content(htmlDoc, as = "text")
+    parsedDoc = htmlParse(docContent)
+    posTable <- xpathSApply(parsedDoc, "//div[@id='yog-bd']/div/div[2]/div/div/table[4]/tr/td/a", xmlValue)
+    cVector <- unlist(strsplit(as.character(posTable), "\n"))
+    htmlDoc <- GET("http://sports.yahoo.com/nba/stats/byposition?pos=G&conference=NBA&year=season_2015&qualified=0")
+    stop_for_status(htmlDoc)
+    docContent <- content(htmlDoc, as = "text")
+    parsedDoc = htmlParse(docContent)
+    posTable <- xpathSApply(parsedDoc, "//div[@id='yog-bd']/div/div[2]/div/div/table[4]/tr/td/a", xmlValue)
+    gVector <- unlist(strsplit(as.character(posTable), "\n"))
+    htmlDoc <- GET("http://sports.yahoo.com/nba/stats/byposition?pos=GF&conference=NBA&year=season_2015&qualified=0")
+    stop_for_status(htmlDoc)
+    docContent <- content(htmlDoc, as = "text")
+    parsedDoc = htmlParse(docContent)
+    posTable <- xpathSApply(parsedDoc, "//div[@id='yog-bd']/div/div[2]/div/div/table[4]/tr/td/a", xmlValue)
+    gfVector <- unlist(strsplit(as.character(posTable), "\n"))
+    htmlDoc <- GET("http://sports.yahoo.com/nba/stats/byposition?pos=F&conference=NBA&year=season_2015&qualified=0")
+    stop_for_status(htmlDoc)
+    docContent <- content(htmlDoc, as = "text")
+    parsedDoc = htmlParse(docContent)
+    posTable <- xpathSApply(parsedDoc, "//div[@id='yog-bd']/div/div[2]/div/div/table[4]/tr/td/a", xmlValue)
+    fVector <- unlist(strsplit(as.character(posTable), "\n"))
+    htmlDoc <- GET("http://sports.yahoo.com/nba/stats/byposition?pos=FC&conference=NBA&year=season_2015&qualified=0")
+    stop_for_status(htmlDoc)
+    docContent <- content(htmlDoc, as = "text")
+    parsedDoc = htmlParse(docContent)
+    posTable <- xpathSApply(parsedDoc, "//div[@id='yog-bd']/div/div[2]/div/div/table[4]/tr/td/a", xmlValue)
+    fcVector <- unlist(strsplit(as.character(posTable), "\n"))
+
+    message("Parsing over")
     
     # Create file with a header
     file = "data/nbastats.csv"
@@ -86,7 +149,7 @@ createCSV <- function()
                           FT = numeric(), FTA = numeric(), FTP = numeric(), 
                           ORB = numeric(), DRB = numeric(), TRB = numeric(), 
                           AST = numeric(), STL = numeric(), BLK = numeric(), 
-                          TOV = numeric(), PF = numeric(), PTS = numeric(), 
+                          TOV = numeric(), FOU = numeric(), PTS = numeric(), 
                           FA = integer(), PER = numeric(), TSP = numeric(), 
                           TPAr = numeric(), FTr = numeric(), ORBP = numeric(), 
                           DRBP = numeric(), TRBP = numeric(), ASTP = numeric(), 
@@ -94,6 +157,8 @@ createCSV <- function()
                           USGP = numeric(), OWS = numeric(), DWS = numeric(), 
                           WS = numeric(), WSPFE = numeric(), OBPM = numeric(), 
                           DBPM = numeric(), BPM = numeric(), VORP = numeric(), 
+                          PG = integer(), SG = integer(), SF = integer(), 
+                          PF = integer(), C = integer(), 
                           stringsAsFactors=FALSE)
     write.table(x = players, 
                 file = file, 
@@ -151,7 +216,7 @@ createCSV <- function()
         curSTL <- playerVector[i + 25]
         curBLK <- playerVector[i + 26]
         curTOV <- playerVector[i + 27]
-        curPF <- playerVector[i + 28]
+        curFOU <- playerVector[i + 28]
         curPTS <- playerVector[i + 29]
         curPTS <- unlist(strsplit(curPTS, "\n"))
         curPTS <- curPTS[1]
@@ -186,16 +251,49 @@ createCSV <- function()
         curVORP <- advancedVector[j + 28]
         curVORP <- unlist(strsplit(curVORP, "\n"))
         curVORP <- curVORP[1]
+
+        # Check for position
+        curPG <- "0"
+        curSG <- "0"
+        curSF <- "0"
+        curPF <- "0"
+        curC <- "0"
+        if (curPlayer %in% pgVector)    {curPG <- "1"}
+        if (curPlayer %in% sgVector)    {curSG <- "1"}
+        if (curPlayer %in% sfVector)    {curSF <- "1"}
+        if (curPlayer %in% pfVector)    {curPF <- "1"}
+        if (curPlayer %in% cVector)     {curC <- "1"}
+        if (curPlayer %in% gVector)    
+        {
+            curPG <- "1"
+            curSG <- "1"
+        }
+        if (curPlayer %in% gfVector)    
+        {
+            curSG <- "1"
+            curSF <- "1"
+        }
+        if (curPlayer %in% fVector)    
+        {
+            curSF <- "1"
+            curPF <- "1"
+        }
+        if (curPlayer %in% fcVector)    
+        {
+            curPF <- "1"
+            curC  <- "1"
+        }
         
         curMatrix<- matrix(
             c(curRk, curPlayer, curPos, curAge, curTm, curG, curGS, curMP, curFG, 
               curFGA, curFGP, cur3P, cur3PA, cur3PP, cur2P, cur2PA, cur2PP, curEFG, 
               curFT, curFTA, curFTP, curORB, curDRB, curTRB, curAST, curSTL, curBLK, 
-              curTOV, curPF, curPTS, curFA, curPER, curTSP, curTPAr, curFTr, curORBP, 
+              curTOV, curFOU, curPTS, curFA, curPER, curTSP, curTPAr, curFTr, curORBP, 
               curDRBP, curTRBP, curASTP, curSTLP, curBLKP, curTOVP, curUSGP, curOWS, 
-              curDWS, curWS, curWSPFE, curOBPM, curDBPM, curBPM, curVORP),
+              curDWS, curWS, curWSPFE, curOBPM, curDBPM, curBPM, curVORP, curPG, curSG, 
+              curSF, curPF, curC),
             nrow = 1, 
-            ncol = 51)
+            ncol = 56)
         write.table(curMatrix, 
                     file, 
                     append = TRUE, 
