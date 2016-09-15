@@ -38,7 +38,8 @@ shinyUI(fluidPage(
              column(8,
                     tabsetPanel(
                         # show a plot  
-                        tabPanel("Explorer", ggvisOutput("plot1"),
+                        tabPanel("Explorer", ggvisOutput("plot1"), align="center",
+                            tags$small(paste0("Please modify a setting to display the initial plot")),                             
                             wellPanel(strong("Number of players selected :"), 
                                       textOutput("n_players"), 
                                       strong("Means for current sample :"),
