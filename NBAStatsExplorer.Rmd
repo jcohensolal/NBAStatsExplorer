@@ -1,12 +1,9 @@
 ## About  
 
-The *NBA Player Stats Explorer* aims to allow users to visually explore statistics related to the play during the 2015/2016 season of the National Basketball Association (or *NBA*). 
+The *NBA Player Stats Explorer* aims to allow users to visually explore statistics related to the play during the last few seasons of the National Basketball Association (or *NBA*). 
 
 NBA statistics are available in a number of places, but custom plotting of one statistic against another is nowhere to be found (to my admittedly limited knowledge). It will allow all NBA fans to get new insight on the abilities of their favorite players, and compare players against one another on various "profiles". For a *basic* example, you could ask "Who are the best inside-out players in the league?", and get a reasonable answer by plotting Rebounds against 3 point shots made.
 
-The application is available at this address :  
-
-[NBA Player Stats Explorer](https://jcohensolal.shinyapps.io/NBAStatsExplorer/)
 
 _________________________________________________________________________________
 
@@ -15,7 +12,11 @@ ________________________________________________________________________________
 
 You can choose which statistic to use on X and Y axes, and apply several filters on the data you want to show. On the right panel, the corresponding plot will show instantly. Mouse-over information is available to know which point represent which player. Means for both chosen X and Y variables are calculated on the fly on the current sample of players and shown right below the plot.
 
-Filtering is done via the use of three sliders, one checkbox group, and one drop-down menu. The sliders let you define a range for the following filters :
+Filtering is done via the use of three sliders, one checkbox group, and one drop-down menu. 
+
+The drop-down menus offers the possibility to select the season (currently going back to 2013/2014), and to only show players of a specific team. The "TOT" value represents all players who have been traded since the start of the season, and offers statistics on the whole season, combining games played with their former and their new teams.
+
+The sliders let you define a range for the following filters :
 
 * Games played
 * Minutes per game (average)
@@ -23,9 +24,7 @@ Filtering is done via the use of three sliders, one checkbox group, and one drop
 
 The checkbox group lets you filter by position on the basketball floor. Inclusion is stronger than exclusion here, which means if a player is both PG and SG eligible, and you choose to just exclude SG players, then that player will still be shown on the plot as he qualifies for the PG position as well. Please note : positions for a given player may vary depending on your source of information, as it is not an official statistic provided by the league.
 
-The drop-down menu offers the possibility to only show players of a specific team. The "TOT" value represents all players who have been traded since the start of the season, and offers statistics on whe whole season, combining games played with their former and their new teams.
-
-The checkbox allows to only plot the 2016 Free Agents.
+The last checkbox allows to only plot the incoming crop of Free Agents.
 
 _________________________________________________________________________________
 
@@ -45,7 +44,7 @@ The list of Free Agents for the summer of 2016 has been exported from [RealGM](h
 
 Positions for players have been exported from [Yahoo Sports](http://sports.yahoo.com/nba/stats/byposition).
 
-A consolidated CSV file has been created using both sources, and various modifications have been performed to allow for easier use.
+A consolidated CSV file has been created using all sources, and various modifications have been performed to allow for easier use.
 
 _________________________________________________________________________________
 
@@ -78,11 +77,10 @@ Here are the definitions of the more obscure, "advanced"" stats, from [Basketbal
 _________________________________________________________________________________
 
 
-## Possible Improvements
+## Latest changes
 
-* Add filtering by dates.
-* Allow for statistics from previous seasons to be loaded. 
-* Speed up the loading phase.
+* The loading is much quicker, as the data sources are now prepared offline.
+* Statistics for multiple seasons are now available. 
 
 _________________________________________________________________________________
 
