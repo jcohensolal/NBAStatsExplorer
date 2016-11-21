@@ -9,6 +9,7 @@ library(ggvis)
 fourteenData <- read.csv(file = "data/2014nbastats.csv")
 fifteenData <- read.csv(file = "data/2015nbastats.csv")
 sixteenData <- read.csv(file = "data/2016nbastats.csv")
+seventeenData <- read.csv(file = "data/2017nbastats.csv")
 
 # Function for generating mouse-over text
 playerMouseOver <- function(x) 
@@ -62,7 +63,7 @@ shinyServer(
             }
 
             # Add column which says whether the player will be a free agent in 
-            # July of 2016
+            # July of 2017
             currentData$isFA <- character(nrow(currentData))
             currentData$isFA[currentData$FA == 0] <- "No"
             currentData$isFA[currentData$FA == 1] <- "Yes"
@@ -85,6 +86,7 @@ shinyServer(
         # Reactive function to retrieve season input
         getSeason <- eventReactive(input$season, 
         {
+            if(input$season == "2017")    {currentData <- seventeenData}
             if(input$season == "2016")    {currentData <- sixteenData}
             if(input$season == "2015")    {currentData <- fifteenData}
             if(input$season == "2014")    {currentData <- fourteenData}

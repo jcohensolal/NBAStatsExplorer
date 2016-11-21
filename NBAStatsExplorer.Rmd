@@ -40,7 +40,7 @@ ________________________________________________________________________________
 
 All the statistics have been exported from [Basketball Reference](http://www.basketball-reference.com). Coverage starts on the first night of the season, and should cover about the whole season played so far (games played the previous night might need a few hours to be included though).
 
-The list of Free Agents for the summer of 2016 has been exported from [RealGM](http://basketball.realgm.com/nba/future_free_agents/2017/All/Per_Game/0/NBA/player).
+The list of Free Agents has been exported from [RealGM](http://basketball.realgm.com/nba/future_free_agents/2017/All/Per_Game/0/NBA/player).
 
 Positions for players have been exported from [Yahoo Sports](http://sports.yahoo.com/nba/stats/byposition).
 

@@ -8,13 +8,13 @@ shinyUI(fluidPage(
     fluidRow(column(4,
                     wellPanel(
                         h4("AXES", align = "center"),
-                        selectInput("xvar", "X-axis variable", axis_vars, selected = "OBPM"),
-                        selectInput("yvar", "Y-axis variable", axis_vars, selected = "DBPM")), 
+                        selectInput("xvar", "X-axis variable", axis_vars, selected = "WS"),
+                        selectInput("yvar", "Y-axis variable", axis_vars, selected = "PER")), 
                     wellPanel(
                         h4("FILTERS", align = "center"),
                         selectInput("season", "Season", 
-                                    choices = list("2016" = '2016', "2015" = '2015', "2014" = '2014'),  
-                                    selected = "2016"),
+                                    choices = list("2017" = '2017', "2016" = '2016', "2015" = '2015', "2014" = '2014'),  
+                                    selected = "2017"),
                         selectInput("Team", "Team",
                                     c("All", "ATL", "BOS", "BRK", "CHI", "CHO", "CLE", 
                                       "DAL", "DEN", "DET", "GSW", "HOU", "IND", "LAC", 
@@ -22,9 +22,9 @@ shinyUI(fluidPage(
                                       "OKC", "ORL", "PHI", "PHO", "POR", "SAC", "SAS", 
                                       "TOR", "TOT", "UTA", "WAS")), 
                         sliderInput("GP", "Games played",
-                                    1, 82, value = c(20, 82)),
+                                    1, 82, value = c(5, 82)),
                         sliderInput("MPG", "Minutes per game",
-                                    1, 48, value = c(10, 48)),
+                                    1, 48, value = c(5, 48)),
                         sliderInput("Age", "Age",
                                     18, 45, value = c(18, 45)),
                         checkboxGroupInput("position", "Position", 
@@ -40,6 +40,7 @@ shinyUI(fluidPage(
                         # show a plot  
                         tabPanel("Explorer", ggvisOutput("plot1"), align="center",
                             tags$small(paste0("Please modify a setting to display the initial plot")),                             
+                            br(tags$small(paste0("Last updated : 2016, November 20th"))),                             
                             wellPanel(strong("Number of players selected :"), 
                                       textOutput("n_players"), 
                                       strong("Means for current sample :"),
@@ -55,7 +56,7 @@ shinyUI(fluidPage(
                                             target="_blank"))),
                                 column(4, tags$small("Positions from "), 
                                        br(a("Yahoo Sports", 
-                                            href="http://sports.yahoo.com/nba/stats/byposition", 
+                                            href="http://sports.yahoo.com/nba/stats/byposition?qualified=0", 
                                             target="_blank"))))), 
                         # show support document 
                         tabPanel("User Guide", includeHTML("NBAStatsExplorer.html")))))))

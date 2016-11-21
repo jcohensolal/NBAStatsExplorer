@@ -188,8 +188,7 @@ createCSV <- function(year)
             }
         }
         previousPlayer <- curPlayer
-        message(curPlayer)
-        
+
         curPos <- xpathSApply(basicDoc, paste("//tbody/tr[", i, "]/td[2]", sep = ""), xmlValue)
         curAge <- xpathSApply(basicDoc, paste("//tbody/tr[", i, "]/td[3]", sep = ""), xmlValue)
         curTm <- xpathSApply(basicDoc, paste("//tbody/tr[", i, "]/td[4]", sep = ""), xmlValue)
